@@ -1,0 +1,54 @@
+﻿@model List<DACT.Models.MonAn>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="table-responsive">
+            @using (Html.BeginForm("SearchMonAn", "Search"))
+            {
+
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
+                    @*<input style="border: none" type="submit" value="Search" class="nir-btn w-100" />*@
+                </div>
+
+            }
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Mã món ăn</th>
+                        <th scope="col">Ảnh minh họa</th>
+                        <th scope="col">Tên món ăn</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Mô tả</th>
+                        <th scope="col">Loại món ăn</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@item.MaMonAn</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img class="img-fluid rounded" src="@item.Image" style="max-width: 60px" alt="">
+                                    </div>
+                                </td>
+                                <td>@item.TenMon</td>
+                                <td>@item.GiaMon</td>
+                                <td>@item.MoTa</td>
+                                <td>@item.Theloai.TenTheLoai</td>
+                                <td><a class="btn btn-sm btn-primary" href="@Url.Action("Edit", "AdminMon", new { id = item.MaMonAn,area = "Admin" })">Edit</a></td>
+                            </tr>
+
+                        </tbody>
+                    }
+                }
+            </table>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,709 @@
+﻿@model IEnumerable<DACT.Models.CartItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@model IEnumerable<DACT.Models.CartItem>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <main class="main-content">
+
+
+        <div class="cart-area section-space-y-axis-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form action="javascript:void(0)">
+                            <div class="table-content table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="product_remove">Xóa</th>
+                                            <th class="product-thumbnail">Ảnh</th>
+                                            <th class="cart-product-name">Tên sản phẩm</th>
+                                            <th class="product-price">Giá</th>
+                                            <th class="product-quantity">Số lượng</th>
+                                            <th class="product-subtotal">Tổng</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                @using (Html.BeginForm("UpdateCart", "ShoppingCart", new { id = item.Id }))
+                                                {
+                                                    <td class="product_remove">
+                                                        <a href="@Url.Action("RemoveCartItem", "ShoppingCart",new { id = item.Id })">
+                                                            <i class="pe-7s-close" title="Remove"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-thumbnail">
+                                                        <a href="javascript:void(0)">
+                                                            <img style="max-width: 100%; object-fit: cover; width: 100%; height: 400px" src="@item.AnhMon" alt="@item.tenMon">
+                                                        </a>
+                                                    </td>
+
+                                                    <td class="product-name"><a href="javascript:void(0)">@item.tenMon</a></td>
+                                                    <td class="product-price"><span class="amount">@item.Gia.ToString("#,##0") VNĐ</span></td>
+                                                    <td class="quantity">
+                                                        <div class="cart-plus-minus">
+                                                            <input class="cart-plus-minus-box" min="1" name="txtSoLuong" value="@item.SoLuong" type="text">
+                                                        </div>
+                                                    </td>
+                                                    <td class="product-subtotal"><span class="amount">@item.tongTien.ToString("#,##0") VNĐ</span></td>
+                                                    <td>
+                                                        <div class="coupon-all">
+                                                            <div class="coupon2">
+                                                                <input class="button" name="update_cart" value="Cập nhật" type="submit">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="coupon-all">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5 ml-auto">
+                                    <div class="cart-page-total">
+                                        <h2>Cart totals</h2>
+                                        <ul>
+                                            <li>Số lượng sản phẩm <span>@ViewBag.TongSoLuong</span></li>
+                                            <li>Tổng tiền<span>@String.Format("{0:0,0}", ViewBag.TongTien)</span></li>
+                                        </ul>
+                                        <a href="@Url.Action("Confirm", "ShoppingCart")">TIẾN HÀNH ĐẶT HÀNG</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>*@
+
+
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Product 1 Title, Product 2 Title, Product 3 Title">
+    <meta name="description" content="">
+    <title></title>
+    <link rel="stylesheet" href="/nicepage.css" media="screen">
+    <script class="u-script" type="text/javascript" src="np://app.desktop.nicepage.com/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="np://app.desktop.nicepage.com/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 5.10.10, nicepage.com">
+</head>
+<body class="u-body u-xl-mode" data-style="shopping-cart-template-1" data-posts="" data-global-section-properties="{&quot;code&quot;:&quot;CART&quot;,&quot;colorings&quot;:{&quot;light&quot;:[&quot;clean&quot;,&quot;clean&quot;],&quot;colored&quot;:[&quot;clean&quot;,&quot;clean&quot;,&quot;clean&quot;],&quot;dark&quot;:[&quot;clean&quot;,&quot;clean&quot;,&quot;clean&quot;]},&quot;isPreset&quot;:true}" data-source="fix" data-lang="en" data-page-sections-style="[{&quot;name&quot;:&quot;shopping-cart-1&quot;,&quot;margin&quot;:&quot;both&quot;,&quot;repeat&quot;:false}]" data-page-coloring-types="{&quot;light&quot;:[&quot;clean&quot;,&quot;clean&quot;],&quot;colored&quot;:[&quot;clean&quot;,&quot;clean&quot;,&quot;clean&quot;],&quot;dark&quot;:[&quot;clean&quot;,&quot;clean&quot;,&quot;clean&quot;]}" data-page-category="&quot;Cart&quot;">
+    <section class="u-clearfix u-block-a75d-1" custom-posts-hash="[T,[T,T],[[[I,T],[I,T],[I,T]],[],[],[]]]" data-section-properties="{&quot;margin&quot;:&quot;both&quot;,&quot;stretch&quot;:true}" data-id="a75d" data-style="shopping-cart-1" id="sec-421a">
+        <div class="u-clearfix u-sheet u-block-a75d-2">
+            <div class="u-cart u-block-a75d-6">
+                <div class="u-cart-products-table u-table u-table-responsive u-block-a75d-7">
+                    <table class="u-table-entity u-block-a75d-12">
+                        <colgroup>
+                            <col width="65%">
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="15%">
+                        </colgroup>
+                        <thead class="u-table-header u-block-a75d-13">
+                            <tr>
+                                <th class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-14">Product </th>
+                                <th class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-15">Price </th>
+                                <th class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-16">Quantity </th>
+                                <th class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-17">Subtotal </th>
+                              
+
+                            </tr>
+                        </thead>
+                        <tbody class="u-table-body u-block-a75d-18">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    @using (Html.BeginForm("UpdateCart", "ShoppingCart", new { id = item.Id }))
+                                    {
+                                        <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-19">
+
+
+                                            <img class="u-cart-product-image u-image u-image-default u-product-control u-block-a75d-21" src="@item.AnhMon">
+
+                                            <h2 class="u-cart-product-title u-product-control u-text u-block-a75d-22">
+                                                <a class="u-product-title-link" href="#">@item.tenMon</a>
+                                            </h2>
+                                        </td>
+                                        <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-23">
+                                            <div class="u-cart-product-price u-product-control u-product-price u-block-a75d-24">
+                                                <div class="u-price-wrapper">
+                                                    <div class="u-hide-price u-old-price"></div>
+                                                    <div class="u-price">@item.Gia.ToString("#,##0") VNĐ</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-25">
+                                            <div class="u-cart-product-quantity u-product-control u-product-quantity u-block-a75d-26">
+                                                <div class="u-hidden u-quantity-label"> Quantity </div>
+                                                <div class="u-border-1 u-border-grey-25 u-quantity-input">
+                                                    <a class="disabled minus u-button-style u-hidden u-quantity-button">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd">@item.SoLuong</path></svg>
+                                                        @*<input class="cart-plus-minus-box" min="1" name="txtSoLuong" value="@item.SoLuong" type="text">*@
+
+                                                    </a>
+                                                    <input class="u-border-grey-30 u-input u-block-a75d-27" type="text" name="txtSoLuong" value="@item.SoLuong" pattern="[1-9]+">
+                                                    <a class="plus u-button-style u-hidden u-quantity-button">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8 M 8 4 v 8" fill="none" stroke="currentColor" stroke-width="7" fill-rule="evenodd"></path></svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-28">
+                                            <div class="u-cart-product-subtotal u-product-control u-product-price u-block-a75d-29">
+                                                <div class="u-price-wrapper">
+                                                    <div class="u-hide-price u-old-price"></div>
+                                                    <div class="u-price" style="font-weight: 700;">@item.tongTien.ToString("#,##0") VNĐ</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input class="button" name="update_cart" value="Cập nhật" type="submit">
+                                        </td>
+                                        <td> @Html.ActionLink("Xóa", "RemoveCartItem", new { id = item.Id })</td>
+                                    }
+                                </tr>
+
+                            }
+
+                        </tbody>
+                        @*<tfoot class="hidden u-table-footer u-block-a75d-52">
+                                <tr class="hidden u-block-a75d-53">
+                                    <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-54"></td>
+                                    <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-55"></td>
+                                    <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-56"></td>
+                                    <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-57"></td>
+                                </tr>
+                            </tfoot>*@
+                    </table>
+                </div>
+                <div class="u-cart-button-container">
+                    <a href="@Url.Action("Index","Menu")" class="u-active-none u-btn u-button-style u-cart-continue-shopping u-hover-none u-none u-text-body-color u-block-a75d-58">
+                        <span class="u-icon u-block-a75d-59">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 443.52 443.52" x="0px" y="0px" data-color="#000000" style="width: 1em; height: 1em;"><g><g><path d="M143.492,221.863L336.226,29.129c6.663-6.664,6.663-17.468,0-24.132c-6.665-6.662-17.468-6.662-24.132,0l-204.8,204.8    c-6.662,6.664-6.662,17.468,0,24.132l204.8,204.8c6.78,6.548,17.584,6.36,24.132-0.42c6.387-6.614,6.387-17.099,0-23.712    L143.492,221.863z"></path>
+</g>
+</g></svg>
+                        </span>&nbsp;Continue Shopping
+                    </a>
+                </div>
+                <div class="u-cart-blocks-container">
+                    <div class="u-cart-block u-indent-30">
+                        <div class="u-cart-block-container u-clearfix">
+                            <h5 class="u-cart-block-header u-text u-block-a75d-61"></h5>
+                            <div class="u-cart-block-content u-text u-block-a75d-62">
+                                <div class="u-cart-form u-form u-block-a75d-63">
+                                    <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form" data-services="">
+
+
+                                        <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+                                        <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
+                                        <input type="hidden" value="" name="recaptchaResponse">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-cart-block u-cart-totals-block u-indent-30">
+                        <div class="u-cart-block-container u-clearfix">
+                            <h5 class="u-cart-block-header u-text u-block-a75d-69">Cart Totals</h5>
+                            <div class="u-align-right u-cart-block-content u-text u-block-a75d-70">
+                                <div class="u-cart-totals-table u-table u-table-responsive u-block-a75d-71">
+                                    <table class="u-table-entity u-block-a75d-75">
+                                        <colgroup>
+                                            <col width="50%">
+                                            <col width="50%">
+                                        </colgroup>
+                                        <thead class="hidden u-table-header u-block-a75d-76">
+                                            <tr class="hidden u-block-a75d-77">
+                                                <th class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-78"> Tổng Số Lượng</th>
+                                                <th class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-79">@ViewBag.TongSoLuong</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="u-align-right u-table-body u-block-a75d-80">
+                                            @*<ul>
+                                                    <li>Số lượng sản phẩm <span>@ViewBag.TongSoLuong</span></li>
+                                                    <li>Tổng tiền<span>@String.Format("{0:0,0}", ViewBag.TongTien)</span></li>
+                                                </ul>*@
+                                            <tr>
+                                                <td class="u-align-left u-border-1 u-border-grey-dark-1 u-first-column u-table-cell u-block-a75d-83">Total</td>
+                                                <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-84">@String.Format("{0:0,0}", ViewBag.TongTien) VND</td>
+                                            </tr>
+                                        </tbody>
+                                        @*<tfoot class="hidden u-table-footer u-block-a75d-85">
+                                                <tr class="hidden u-block-a75d-86">
+                                                    <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-87"></td>
+                                                    <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-block-a75d-88"></td>
+                                                </tr>
+                                            </tfoot>*@
+                                    </table>
+                                </div>
+                                <a href="@Url.Action("OrderMomo","ShoppingCart")" class="u-border-none u-btn u-button-style u-cart-checkout-btn u-palette-3-light-1 u-block-a75d-89">Thanh Toán</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style data-mode="XL">
+            {
+                .u-block-a75d-2
+
+            {
+                min-height: 500px;
+            }
+
+            .u-block-a75d-6 {
+                width: 1140px;
+                margin-top: 63px;
+                margin-bottom: 60px;
+                min-height: 375px;
+            }
+
+            .u-block-a75d-20 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-22 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-26 {
+                width: 100px;
+            }
+
+            .u-block-a75d-31 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-33 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-37 {
+                width: 100px;
+            }
+
+            .u-block-a75d-42 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-44 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-48 {
+                width: 100px;
+            }
+
+            .u-block-a75d-58 {
+                padding-top: 10px;
+                padding-right: 14px;
+                padding-bottom: 10px;
+                padding-left: 14px;
+            }
+
+            .u-block-a75d-60 {
+                background-image: none;
+            }
+
+            .u-block-a75d-68 {
+                background-image: none;
+            }
+
+            .u-block-a75d-81 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-83 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-84 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-89 {
+                margin-top: 20px;
+                background-image: none;
+            }
+            }
+        </style>
+        <style data-mode="LG">
+            {
+                .u-block-a75d-2
+
+            {
+                min-height: 500px;
+            }
+
+            .u-block-a75d-6 {
+                width: 940px;
+                margin-top: 63px;
+                margin-bottom: 60px;
+                min-height: 375px;
+            }
+
+            .u-block-a75d-20 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-22 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-26 {
+                width: 100px;
+            }
+
+            .u-block-a75d-31 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-33 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-37 {
+                width: 100px;
+            }
+
+            .u-block-a75d-42 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-44 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-48 {
+                width: 100px;
+            }
+
+            .u-block-a75d-58 {
+                padding-top: 10px;
+                padding-right: 14px;
+                padding-bottom: 10px;
+                padding-left: 14px;
+            }
+
+            .u-block-a75d-60 {
+                background-image: none;
+            }
+
+            .u-block-a75d-68 {
+                background-image: none;
+            }
+
+            .u-block-a75d-81 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-83 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-84 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-89 {
+                margin-top: 20px;
+                background-image: none;
+            }
+            }
+        </style>
+        <style data-mode="MD">
+            {
+                .u-block-a75d-2
+
+            {
+                min-height: 500px;
+            }
+
+            .u-block-a75d-6 {
+                width: 720px;
+                margin-top: 63px;
+                margin-bottom: 60px;
+                min-height: 375px;
+            }
+
+            .u-block-a75d-20 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-22 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-26 {
+                width: 100px;
+            }
+
+            .u-block-a75d-31 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-33 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-37 {
+                width: 100px;
+            }
+
+            .u-block-a75d-42 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-44 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-48 {
+                width: 100px;
+            }
+
+            .u-block-a75d-58 {
+                padding-top: 10px;
+                padding-right: 14px;
+                padding-bottom: 10px;
+                padding-left: 14px;
+            }
+
+            .u-block-a75d-60 {
+                background-image: none;
+            }
+
+            .u-block-a75d-68 {
+                background-image: none;
+            }
+
+            .u-block-a75d-81 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-83 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-84 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-89 {
+                margin-top: 20px;
+                background-image: none;
+            }
+            }
+        </style>
+        <style data-mode="SM">
+            {
+                .u-block-a75d-2
+
+            {
+                min-height: 500px;
+            }
+
+            .u-block-a75d-6 {
+                width: 540px;
+                margin-top: 63px;
+                margin-bottom: 60px;
+                min-height: 375px;
+            }
+
+            .u-block-a75d-20 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-22 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-26 {
+                width: 100px;
+            }
+
+            .u-block-a75d-31 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-33 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-37 {
+                width: 100px;
+            }
+
+            .u-block-a75d-42 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-44 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-48 {
+                width: 100px;
+            }
+
+            .u-block-a75d-58 {
+                padding-top: 10px;
+                padding-right: 14px;
+                padding-bottom: 10px;
+                padding-left: 14px;
+            }
+
+            .u-block-a75d-60 {
+                background-image: none;
+            }
+
+            .u-block-a75d-68 {
+                background-image: none;
+            }
+
+            .u-block-a75d-81 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-83 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-84 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-89 {
+                margin-top: 20px;
+                background-image: none;
+            }
+            }
+        </style>
+        <style data-mode="XS">
+            {
+                .u-block-a75d-2
+
+            {
+                min-height: 500px;
+            }
+
+            .u-block-a75d-6 {
+                width: 340px;
+                margin-top: 63px;
+                margin-bottom: 60px;
+                min-height: 375px;
+            }
+
+            .u-block-a75d-20 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-22 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-26 {
+                width: 100px;
+            }
+
+            .u-block-a75d-31 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-33 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-37 {
+                width: 100px;
+            }
+
+            .u-block-a75d-42 {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .u-block-a75d-44 {
+                font-size: 1rem;
+            }
+
+            .u-block-a75d-48 {
+                width: 100px;
+            }
+
+            .u-block-a75d-58 {
+                padding-top: 10px;
+                padding-right: 14px;
+                padding-bottom: 10px;
+                padding-left: 14px;
+            }
+
+            .u-block-a75d-60 {
+                background-image: none;
+            }
+
+            .u-block-a75d-68 {
+                background-image: none;
+            }
+
+            .u-block-a75d-81 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-83 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-84 {
+                font-weight: 700;
+            }
+
+            .u-block-a75d-89 {
+                margin-top: 20px;
+                background-image: none;
+            }
+            }
+        </style>
+    </section>
+</body>
+</html>

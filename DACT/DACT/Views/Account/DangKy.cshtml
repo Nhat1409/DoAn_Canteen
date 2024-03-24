@@ -1,0 +1,544 @@
+﻿@model DACT.Models.Taikhoan
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+
+@*@section Scripts
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var message = $('#Message').text();
+                if (message !== '') {
+                    toastr.success(message);
+                }
+            });
+
+            $(document).ready(function () {
+                var messageErr = $('#MessageErr').text();
+                if (messageErr !== '') {
+                    toastr.error(messageErr);
+                }
+            });
+        </script>
+    }*@
+
+
+
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title></title>
+    <link rel="stylesheet" href="/nicepage.css" media="screen">
+    <script class="u-script" type="text/javascript" src="~/Content/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="~/Content/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 5.10.10, nicepage.com">
+</head>
+<body class="u-body u-xl-mode" data-style="login-template-1" data-posts="" data-global-section-properties="{&quot;code&quot;:&quot;LOGIN&quot;,&quot;colorings&quot;:{&quot;light&quot;:[&quot;clean&quot;,&quot;clean&quot;],&quot;colored&quot;:[&quot;clean&quot;,&quot;clean&quot;,&quot;clean&quot;],&quot;dark&quot;:[&quot;clean&quot;,&quot;clean&quot;,&quot;clean&quot;]},&quot;isPreset&quot;:true}" data-source="fix" data-lang="en" data-page-sections-style="[{&quot;name&quot;:&quot;login-form-1&quot;,&quot;margin&quot;:&quot;both&quot;,&quot;repeat&quot;:false}]" data-page-coloring-types="{&quot;light&quot;:[&quot;clean&quot;,&quot;clean&quot;],&quot;colored&quot;:[&quot;clean&quot;,&quot;clean&quot;,&quot;clean&quot;],&quot;dark&quot;:[&quot;clean&quot;,&quot;clean&quot;,&quot;clean&quot;]}" data-page-category="&quot;Login&quot;">
+    <section class="u-align-center u-clearfix u-image u-block-3cf5-35" custom-posts-hash="T" data-section-properties="{&quot;margin&quot;:&quot;both&quot;,&quot;stretch&quot;:true}" data-id="3cf5" data-style="login-form-1" id="carousel_70d0" data-image-width="1600" data-image-height="1066" data-source="functional_fix">
+        <div class="u-clearfix u-sheet u-valign-middle-xs u-block-3cf5-2">
+
+
+
+            <div class="u-align-center u-container-style u-expanded-width-xs u-group u-palette-3-light-2 u-shape-rectangle u-block-3cf5-46">
+                <div class="u-container-layout u-block-3cf5-47">
+                    <h3 class="u-custom-font u-font-montserrat u-text u-text-default u-block-3cf5-48">REGISTER</h3><div class="u-expanded-width u-form u-login-control u-white u-block-3cf5-49">
+                        <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-20 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 30px;" data-services="">
+
+                            <div class="u-form-group u-form-name u-block-3cf5-50">
+                                <label for="username-a30d" class="u-label u-block-3cf5-51">MSSV *</label>
+                                <div class="" required="">
+                                    @Html.EditorFor(model => model.MSSV, new { htmlAttributes = new { @class = "form-control", placeholder = "MSSV" } })
+                                    @Html.ValidationMessageFor(model => model.MSSV, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="u-form-group u-form-name u-block-3cf5-50">
+                                <label for="username-a30d" class="u-label u-block-3cf5-51">Họ Tên *</label>
+                                <div class="" required="">
+                                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ tên" } })
+                                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="u-form-group u-form-password u-block-3cf5-53">
+                                <label for="password-a30d" class="u-label u-block-3cf5-54">Mật Khẩu *</label>
+                                <div class="" required=""  >
+                                    @Html.PasswordFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật khẩu" } })
+                                </div>
+                            </div>
+                            <div class="u-form-group u-form-password u-block-3cf5-53">
+                                <label for="password-a30d" class="u-label u-block-3cf5-54">Nhập Lại Mật Khẩu</label>
+                                <div class="" required="" >
+
+                                    @Html.PasswordFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập Lại Mật khẩu" } })
+                                </div>
+                            </div>
+
+
+                            <div class="u-align-right u-form-group u-form-submit u-block-3cf5-58">
+                                <a class="u-border-none u-btn u-btn-submit u-button-style u-palette-3-base u-block-3cf5-59">Đăng Ký</a>
+                                <input type="submit" value="submit" class="u-form-control-hidden">
+                            </div>
+                            <input type="hidden" value="" name="recaptchaResponse">
+
+
+                        </form>
+                    </div><a href="@Url.Action("DangNhap","Account",new { area = "" })" class="u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-login-control u-login-forgot-password u-none u-text-grey-40 u-text-hover-white u-block-3cf5-60">Đăng Nhập</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <style data-mode="XL">
+            .u-block-3cf5-35 {
+                background-image: url('../../content/img/pexels-photo-1372971-recovered.jpg');
+                background-position: 50% 100%;
+            }
+
+            .u-block-3cf5-2 {
+                min-height: 710px;
+            }
+
+            .u-block-3cf5-46 {
+                width: 482px;
+                min-height: 531px;
+                margin-top: 60px;
+                margin-bottom: 60px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .u-block-3cf5-47 {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .u-block-3cf5-48 {
+                font-weight: 700;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .u-block-3cf5-49 {
+                height: 351px;
+                background-image: none;
+                margin-top: 20px;
+                margin-bottom: 0;
+                margin-left: 0;
+            }
+
+            .u-block-3cf5-52 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-55 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-59 {
+                background-image: none;
+                border-style: none;
+                width: 100%;
+                padding-top: 10px;
+                padding-right: 31px;
+                padding-bottom: 10px;
+                padding-left: 29px;
+            }
+
+            .u-block-3cf5-60 {
+                align-self: center;
+                background-image: none;
+                font-weight: 700;
+                margin-top: 13px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .u-block-3cf5-61 {
+                border-style: none;
+                font-weight: 700;
+                margin-top: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        </style>
+        <style data-mode="LG">
+            .u-block-3cf5-35 {
+                background-image: url('../../content/img/pexels-photo-1372971-recovered.jpg');
+                background-position: 50% 100%;
+            }
+
+            .u-block-3cf5-2 {
+                min-height: 585px;
+            }
+
+            .u-block-3cf5-46 {
+                width: 482px;
+                min-height: 531px;
+                margin-top: 60px;
+                margin-bottom: 60px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .u-block-3cf5-47 {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .u-block-3cf5-48 {
+                font-weight: 700;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 1.875rem;
+            }
+
+            .u-block-3cf5-49 {
+                background-image: none;
+                height: 351px;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+
+            .u-block-3cf5-52 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-55 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-59 {
+                background-image: none;
+                border-style: none;
+                width: 100%;
+                padding-top: 10px;
+                padding-right: 31px;
+                padding-bottom: 10px;
+                padding-left: 29px;
+            }
+
+            .u-block-3cf5-60 {
+                align-self: center;
+                border-style: none;
+                margin-top: 13px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+                background-image: none;
+                font-weight: 700;
+            }
+
+            .u-block-3cf5-61 {
+                border-style: none;
+                margin-top: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+                font-weight: 700;
+            }
+        </style>
+        <style data-mode="MD">
+            .u-block-3cf5-35 {
+                background-image: url('../../content/img/pexels-photo-1372971-recovered.jpg');
+                background-position: 50% 100%;
+            }
+
+            .u-block-3cf5-2 {
+                min-height: 448px;
+            }
+
+            .u-block-3cf5-46 {
+                width: 482px;
+                min-height: 531px;
+                margin-top: 60px;
+                margin-bottom: 60px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .u-block-3cf5-47 {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .u-block-3cf5-48 {
+                font-weight: 700;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 1.875rem;
+            }
+
+            .u-block-3cf5-49 {
+                background-image: none;
+                height: 351px;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+
+            .u-block-3cf5-52 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-55 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-59 {
+                background-image: none;
+                border-style: none;
+                width: 100%;
+                padding-top: 10px;
+                padding-right: 31px;
+                padding-bottom: 10px;
+                padding-left: 29px;
+            }
+
+            .u-block-3cf5-60 {
+                align-self: center;
+                border-style: none;
+                margin-top: 13px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+                background-image: none;
+                font-weight: 700;
+            }
+
+            .u-block-3cf5-61 {
+                border-style: none;
+                margin-top: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+                font-weight: 700;
+            }
+        </style>
+        <style data-mode="SM">
+            .u-block-3cf5-35 {
+                background-image: url('../../content/img/pexels-photo-1372971-recovered.jpg');
+                background-position: 50% 100%;
+            }
+
+            .u-block-3cf5-2 {
+                min-height: 336px;
+            }
+
+            .u-block-3cf5-46 {
+                width: 482px;
+                min-height: 531px;
+                margin-top: 60px;
+                margin-bottom: 60px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .u-block-3cf5-47 {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .u-block-3cf5-48 {
+                font-weight: 700;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 1.875rem;
+            }
+
+            .u-block-3cf5-49 {
+                background-image: none;
+                height: 351px;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+
+            .u-block-3cf5-52 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-55 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-59 {
+                background-image: none;
+                border-style: none;
+                width: 100%;
+                padding-top: 10px;
+                padding-right: 31px;
+                padding-bottom: 10px;
+                padding-left: 29px;
+            }
+
+            .u-block-3cf5-60 {
+                align-self: center;
+                border-style: none;
+                margin-top: 13px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+                background-image: none;
+                font-weight: 700;
+            }
+
+            .u-block-3cf5-61 {
+                border-style: none;
+                margin-top: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+                font-weight: 700;
+            }
+        </style>
+        <style data-mode="XS" data-visited="true">
+            .u-block-3cf5-35 {
+                background-image: url('../../content/img/pexels-photo-1372971-recovered.jpg');
+                background-position: 6.25% 100%;
+            }
+
+            .u-block-3cf5-2 {
+                min-height: 651px;
+            }
+
+            .u-block-3cf5-46 {
+                min-height: 531px;
+                margin-top: 60px;
+                margin-bottom: 60px;
+            }
+
+            .u-block-3cf5-47 {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .u-block-3cf5-48 {
+                font-weight: 700;
+                font-size: 1.875rem;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .u-block-3cf5-49 {
+                background-image: none;
+                height: 351px;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+
+            .u-block-3cf5-52 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-55 {
+                background-image: none;
+            }
+
+            .u-block-3cf5-59 {
+                background-image: none;
+                border-style: none;
+                width: 100%;
+                padding-top: 10px;
+                padding-right: 31px;
+                padding-bottom: 10px;
+                padding-left: 29px;
+            }
+
+            .u-block-3cf5-60 {
+                align-self: center;
+                border-style: none;
+                margin-top: 13px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+                background-image: none;
+                font-weight: 700;
+            }
+
+            .u-block-3cf5-61 {
+                border-style: none;
+                margin-top: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+                font-weight: 700;
+            }
+            }
+        </style>
+    </section>
+</body>
+</html>

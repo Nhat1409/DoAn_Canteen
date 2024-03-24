@@ -1,0 +1,63 @@
+﻿@model List<DACT.Models.VeAn>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        @using (Html.BeginForm("SearchMaVe", "Search"))
+        {
+
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <input id="mave" name="mave" type="text" class="form-control" placeholder="Tìm kiếm">
+                @*<input style="border: none" type="submit" value="Search" class="nir-btn w-100" />*@
+            </div>
+
+        }
+        <div class="d-flex align-items-center justify-content-between mb-4">
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Mã vé</th>
+                        <th scope="col">Tên tài khoản</th>
+                        <th scope="col">Tổng tiền</th>
+                        <th scope="col">Ngày đặt</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Ngày nhận</th>
+                        <th>Chi tiết</th>
+                        <th>Kiểm tra</th>
+
+                    </tr>
+                </thead>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr>
+
+                                <td>@item.MaVe</td>
+                                <td>@item.Taikhoan.HoTen</td>
+                                <td>@item.TongTien</td>
+                                <td>@item.NgayMua</td>
+                                @if (item.TrangThai == true)
+                                {
+                                    <td>Đã nhận món</td>
+                                }
+                                else
+                                {
+                                    <td>Chưa nhận món</td>
+                                }
+
+                                <td>@item.NgayNhan</td>
+                                <td><a class="btn btn-sm btn-primary" href="@Url.Action("Detail", "AdminVe", new {id = item.MaVe,})">Detail</a></td>
+                                <td><a class="btn btn-sm btn-primary" href="@Url.Action("Check", "AdminVe", new {id = item.MaVe,})">Kiểm tra</a></td>
+                            </tr>
+
+                        </tbody>
+                    }
+                }
+            </table>
+
+        </div>
+    </div>
+</div>

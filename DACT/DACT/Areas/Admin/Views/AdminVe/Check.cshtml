@@ -1,0 +1,63 @@
+﻿@model DACT.Models.VeAn
+
+@{
+    ViewBag.Title = "Check";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (Model.TrangThai == false)
+{
+    <h4>Chưa Nhận Món</h4>
+}
+else
+{
+    <h4>Đã Nhận Món</h4>
+}
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Taikhoan.MSSV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Taikhoan.MSSV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayMua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayMua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TongTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TongTien)
+        </dd>
+
+        
+       
+        <td>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <form asp - action="Disable" asp - route - id="@Model.MaVe">
+                    <input type="hidden" asp -for="MaVe" />
+                    @if (Model.TrangThai == false)
+                    {
+                        <input type="submit" value="Xác Nhận Lấy Món" class="btn btn-danger" />
+                    }
+                    
+                </form>
+
+            }
+        </td>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

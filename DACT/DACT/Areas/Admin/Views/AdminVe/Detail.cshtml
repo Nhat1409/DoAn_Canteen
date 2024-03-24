@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DACT.Models.ChiTietVA>
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    List<DACT.Models.MonAn> DsMonAn = ViewBag.MonAn;
+}
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Mã chi tiết vé</th>
+                        <th scope="col">Mã vé</th>
+                        <th scope="col">Món ăn</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                    </tr>
+                </thead>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        
+                            <tbody>
+                                <tr>
+
+                                    <td>@item.MaChitiet</td>
+                                    <td>@item.MaVe</td>
+                                    <td>@item.MonAn.TenMon</td>
+                                    <td>@item.Soluong</td>
+                                    <td>@item.TongTien</td>
+                                </tr>
+
+                            </tbody>
+                        
+
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+﻿@model PagedList.IPagedList<DACT.Models.Theloai>
+@using PagedList;
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <a href="@Url.Action("Create","AdminLoaiMon",new { area = "Admin" })">Thêm mới</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Mã loại món ăn</th>
+                        <th scope="col">Tên loại món ăn</th>
+                        @*<th>#</th>*@
+                    </tr>
+                </thead>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr>
+
+                                <td>@item.MaTheLoai</td>
+                                <td>@item.TenTheLoai</td>
+                                @*<td><a class="btn btn-sm btn-primary" href="">Detail</a></td>*@
+                            </tr>
+
+                        </tbody>
+                    }
+                }
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+        </div>
+    </div>
+</div>

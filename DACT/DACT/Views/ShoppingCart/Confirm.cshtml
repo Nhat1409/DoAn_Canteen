@@ -1,0 +1,112 @@
+﻿@model DACT.Models.Taikhoan
+
+@{
+    ViewBag.Title = "Confirm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<DACT.Models.CartItem> DSItem = ViewBag.ListCartItem;
+
+}
+
+<main class="main-content">
+    
+    <div class="checkout-area section-space-y-axis-100">
+        <div class="container">
+            <div class="row">
+                <!--<div class="col-lg-6 col-12">
+                    <form action="javascript:void(0)">
+                        <div class="checkbox-form">
+                            <h3>Chi tiết đơn hàng</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="country-select clearfix">
+                                        <label>Country <span class="required"></span></label>
+                                        <select class="myniceselect nice-select wide">
+                                            <option data-display="Việt Nam">Việt Nam</option>
+                                            <option value="uk">Nga</option>
+                                            <option value="rou">Ukraine</option>
+                                            <option value="fr">Pháp</option>
+                                            <option value="de">Mỹ</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>-->
+                            @*<div class="different-address">
+                                    <div class="order-notes">
+                                        <div class="checkout-form-list checkout-form-list-2">
+                                            <label>Ghi chú</label>
+                                            <textarea name="ghiChu" id="checkout-mess" cols="30" rows="10" placeholder="Ghi chú"></textarea>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        <!--</div>
+                    </form>
+                </div>-->
+                <div class="col-lg-6 col-12">
+                    <div class="your-order">
+                        <h3>Đơn hàng của bạn</h3>
+                        <div class="your-order-table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="cart-product-name">Sản phẩm</th>
+                                        <th class="cart-product-total">Tổng tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in DSItem)
+                                    {
+                                        <tr class="cart_item">
+                                            <td class="cart-product-name">
+                                                @item.tenMon<strong class="product-quantity">
+                                                    × @item.SoLuong
+                                                </strong>
+                                            </td>
+                                            <td class="cart-product-total"><span class="amount">@item.tongTien.ToString("#,##0") VNĐ</span></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr class="order-total">
+                                        <th>Tổng tiền</th>
+                                        <td><strong><span class="amount">@String.Format("{0:0,0}", ViewBag.TongTien) VNĐ</span></strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        @if (ViewBag.TongTien > 0)
+                        {
+                            <div class="payment-method">
+                                <div class="payment-accordion">
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="#payment-3">
+                                                <h5 class="panel-title">
+                                                    <a href="@Url.Action("Order", "ShoppingCart")">
+                                                        Thanh toán khi nhận hàng
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="#payment-3">
+                                                <h5 class="panel-title">
+                                                    <a href="@Url.Action("OrderMomo", "ShoppingCart")">
+                                                        Thanh toán qua Momo
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-button-payment">
+                                        <input value="Chọn phương thức thanh toán" type="submit">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

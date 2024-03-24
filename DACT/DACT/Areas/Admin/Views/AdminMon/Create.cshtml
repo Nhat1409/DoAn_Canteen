@@ -1,0 +1,71 @@
+﻿@model DACT.Models.MonAn
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2>Thêm món mới</h2>
+        </div>
+        @using (Html.BeginForm("Create", "AdminMon", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="text-align: left; padding-top: 10px;">
+            <label class="control-label col-md-2">Tên món ăn</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenMon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenMon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left; padding-top: 10px;">
+            <label class="control-label col-md-2">Giá món ăn</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GiaMon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GiaMon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left; padding-top: 10px;">
+            <label class="control-label col-md-2">Mô tả món ăn</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left; padding-top: 10px;">
+            <label class="control-label col-md-2">Loại món ăn</label>
+            <div class="col-md-10">
+                @Html.DropDownList("MaTheLoai", new SelectList(ViewBag.ListTheLoai, "MaTheLoai", "TenTheLoai"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaTheLoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group" style="text-align: left; padding-top: 10px;">
+                <label class="control-label col-md-2">Ảnh món ăn: </label>
+                <div class="col-md-10">
+                    <input type="file" name="ImageFile" required class="form-control" accept=".png, .jpg, .jpeg" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align:left; padding-top:20px;">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+        }
+    </div>
+</div>
+        
+
+
